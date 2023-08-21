@@ -63,7 +63,21 @@ class CreditsState extends MusicBeatState
 		#end
 		var pisspoop = [ //Name - Icon name - Description - Link - BG Color
 		[
-			'Arwen Team'
+			'Arwen Team-mds um port android'
+		],
+		[
+			'FakerWuzX',
+			'fakerzinho',
+			'Android Port k',
+			'https://m.youtube.com/channel/UCixgD_8stdg5D5v0MGVajDQ',
+			'0xFF38e06b'
+		],
+		[
+			'idklool',
+			'idkkk',
+			'eu vou correr atras de vc ( android port k )',
+			'https://m.youtube.com/channel/UCaLYexu6_kas6WO-6lDl8bw',
+			'0xFF38e06b'
 		],
 		[
 			'Hiro Mizuki',
@@ -284,6 +298,8 @@ class CreditsState extends MusicBeatState
 		bg.color = Std.parseInt(creditsStuff[curSelected][4]);
 		intendedColor = bg.color;
 		changeSelection();
+		
+		#if mobile addVirtualPad(UP_DOWN, A_B); #end
 		super.create();
 	}
 

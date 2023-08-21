@@ -59,6 +59,8 @@ class OptionsState extends MusicBeatState
 			grpOptions.add(optionText);
 		}
 		changeSelection();
+		
+		#if mobile addVirtualPad(UP_DOWN, A_B_C); #end
 
 		super.create();
 	}
@@ -80,6 +82,14 @@ class OptionsState extends MusicBeatState
 		}
 
 		if (controls.BACK) {
+		#if mobile
+        if (virtualPad.buttonC.justPressed) {
+          #if mobile 
+          removeVirtualPad();
+          #end
+          openSubState(new mobile.MobileControlsSubState());
+        }
+        #end
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
 		}
@@ -91,12 +101,15 @@ class OptionsState extends MusicBeatState
 
 			switch(options[curSelected]) {
 				case 'Notas':
+				#if mobile removeVirtualPad(); #end
 					openSubState(new NotesSubstate());
 
 				case 'Controles':
+				#if mobile removeVirtualPad(); #end
 					openSubState(new ControlsSubstate());
 
 				case 'Preferencias':
+				#if mobile removeVirtualPad(); #end
 					openSubState(new PreferencesSubstate());
 			}
 		}
@@ -181,6 +194,7 @@ class NotesSubstate extends MusicBeatSubstate
 		hsvText.color = FlxColor.WHITE;
 		add(hsvText);
 		changeSelection();
+		#if mobile addVirtualPad(LEFT_FULL, A_B_C); #ene
 	}
 
 	var changingNote:Bool = false;
@@ -194,7 +208,7 @@ class NotesSubstate extends MusicBeatSubstate
 				} else if(controls.UI_RIGHT_P) {
 					updateValue(1);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
-				} else if(controls.RESET) {
+				} else if(controls.RESET #if mobile || virtualPad.buttonC.justPressed #end {
 					resetValue(curSelected, typeSelected);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}
@@ -235,7 +249,7 @@ class NotesSubstate extends MusicBeatSubstate
 				changeType(1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			if(controls.RESET) {
+			if(controls.RESET #if mobile || virtualPad.buttonC.justPressed #end {
 				for (i in 0...3) {
 					resetValue(curSelected, i);
 				}
@@ -295,7 +309,12 @@ class NotesSubstate extends MusicBeatSubstate
 				grpNotes.forEachAlive(function(spr:FlxSprite) {
 					spr.alpha = 0;
 				});
-				close();
+				#if mobile
+            flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+            FlxG.resetState();
+            #else
+            close();
+            #end
 			}
 			changingNote = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -462,6 +481,8 @@ class ControlsSubstate extends MusicBeatSubstate {
 			}
 		}
 		changeSelection();
+	
+	#if mobile addVirtualPad(LEFT_FULL, B); #end
 	}
 
 	var leaving:Bool = false;
@@ -484,7 +505,12 @@ class ControlsSubstate extends MusicBeatSubstate {
 				grpOptions.forEachAlive(function(spr:Alphabet) {
 					spr.alpha = 0;
 				});
-				close();
+				#if mobile
+            flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+            FlxG.resetState();
+            #else
+            close();
+            #end
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 			}
 
@@ -848,7 +874,12 @@ class PreferencesSubstate extends MusicBeatSubstate
 				showCharacter.alpha = 0;
 			}
 			descText.alpha = 0;
-			close();
+			#if mobile
+            flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+            FlxG.resetState();
+            #else
+            close();
+            #end
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
 
