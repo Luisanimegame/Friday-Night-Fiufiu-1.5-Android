@@ -761,7 +761,6 @@ class Controls extends FlxActionSet
 		#end
 	}	
 	#end
-	}
 
 	inline static function addKeys(action:FlxActionDigital, keys:Array<FlxKey>, state:FlxInputState)
 	{
