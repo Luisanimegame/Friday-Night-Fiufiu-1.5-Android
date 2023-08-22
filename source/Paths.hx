@@ -227,11 +227,8 @@ class Paths
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
 	{
 		#if sys
-		if (!ignoreMods && FileSystem.exists(mods(key)))
-			return File.getContent(mods(key));
-
-		if (FileSystem.exists(getPreloadPath(key)))
-			return File.getContent(getPreloadPath(key));
+		if (OpenFlAssets.exists(getPreloadPath(key)))
+			return OpenFlAssets.getText(getPreloadPath(key));
 
 		if (currentLevel != null)
 		{
