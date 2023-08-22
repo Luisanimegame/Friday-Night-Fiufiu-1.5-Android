@@ -80,16 +80,15 @@ class OptionsState extends MusicBeatState
 		if (controls.UI_DOWN_P) {
 			changeSelection(1);
 		}
-
-		if (controls.BACK) {
+		
 		#if mobile
         if (virtualPad.buttonC.justPressed) {
-          #if mobile 
           removeVirtualPad();
-          #end
           openSubState(new mobile.MobileControlsSubState());
         }
         #end
+
+		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
 		}
@@ -208,7 +207,7 @@ class NotesSubstate extends MusicBeatSubstate
 				} else if(controls.UI_RIGHT_P) {
 					updateValue(1);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
-				} else if(controls.RESET #if mobile || virtualPad.buttonC.justPressed #end {
+				} else if(controls.RESET #if mobile || virtualPad.buttonC.justPressed #end) {
 					resetValue(curSelected, typeSelected);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}
@@ -249,7 +248,7 @@ class NotesSubstate extends MusicBeatSubstate
 				changeType(1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
-			if(controls.RESET #if mobile || virtualPad.buttonC.justPressed #end {
+			if(controls.RESET #if mobile || virtualPad.buttonC.justPressed #end) {
 				for (i in 0...3) {
 					resetValue(curSelected, i);
 				}

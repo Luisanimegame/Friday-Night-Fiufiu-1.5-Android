@@ -62,22 +62,25 @@ class CreditsState extends MusicBeatState
 		
 		#end
 		var pisspoop = [ //Name - Icon name - Description - Link - BG Color
-		[
-			'Arwen Team-mds um port android'
-		],
+		[ 
+             'Android Port' 
+        ],
 		[
 			'FakerWuzX',
 			'fakerzinho',
 			'Android Port k',
-			'https://m.youtube.com/channel/UCixgD_8stdg5D5v0MGVajDQ',
+			'https://youtube.com/@FakerwuzX?si=CdTCFrSX0l1CxGEk',
 			'0xFF38e06b'
 		],
 		[
 			'idklool',
-			'idkkk',
-			'eu vou correr atras de vc ( android port k )',
-			'https://m.youtube.com/channel/UCaLYexu6_kas6WO-6lDl8bw',
+			'idk',
+			'nao sei\neu ajudei :thumbsup:',
+			'https://youtube.com/@idklool122',
 			'0xFF38e06b'
+		],
+		[
+			'Arwen Team-mds'
 		],
 		[
 			'Hiro Mizuki',
