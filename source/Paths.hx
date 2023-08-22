@@ -235,13 +235,13 @@ class Paths
 			var levelPath:String = '';
 			if(currentLevel != 'shared') {
 				levelPath = getLibraryPathForce(key, currentLevel);
-				if (FileSystem.exists(levelPath))
-					return File.getContent(levelPath);
+				if (OpenFlAssets.exists(levelPath))
+					return OpenFlAssets.getText(levelPath);
 			}
 
 			levelPath = getLibraryPathForce(key, 'shared');
-			if (FileSystem.exists(levelPath))
-				return File.getContent(levelPath);
+			if (OpenFlAssets.exists(levelPath))
+				return OpenFlAssets.getText(levelPath);
 		}
 		#end
 		return Assets.getText(getPath(key, TEXT));
