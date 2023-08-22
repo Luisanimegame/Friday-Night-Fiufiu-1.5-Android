@@ -193,7 +193,7 @@ class NotesSubstate extends MusicBeatSubstate
 		hsvText.color = FlxColor.WHITE;
 		add(hsvText);
 		changeSelection();
-		#if mobile addVirtualPad(LEFT_FULL, A_B_C); #ene
+		#if mobile addVirtualPad(LEFT_FULL, A_B_C); #end
 	}
 
 	var changingNote:Bool = false;
