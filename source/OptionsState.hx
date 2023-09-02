@@ -60,7 +60,7 @@ class OptionsState extends MusicBeatState
 		}
 		changeSelection();
 		
-		#if mobile addVirtualPad(UP_DOWN, A_B_C); #end
+		#if mobile addVirtualPad(LEFT_FULL, A_B_C); #end
 
 		super.create();
 	}
@@ -82,11 +82,11 @@ class OptionsState extends MusicBeatState
 		}
 		
 		#if mobile
-        if (virtualPad.buttonC.justPressed) {
-          removeVirtualPad();
-          openSubState(new mobile.MobileControlsSubState());
-        }
-        #end
+                if (virtualPad.buttonC.justPressed) {
+			removeVirtualPad();
+			openSubState(new mobile.MobileControlsSubState());
+		}
+		#end
 
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -100,15 +100,12 @@ class OptionsState extends MusicBeatState
 
 			switch(options[curSelected]) {
 				case 'Notas':
-				#if mobile removeVirtualPad(); #end
 					openSubState(new NotesSubstate());
 
 				case 'Controles':
-				#if mobile removeVirtualPad(); #end
 					openSubState(new ControlsSubstate());
 
 				case 'Preferencias':
-				#if mobile removeVirtualPad(); #end
 					openSubState(new PreferencesSubstate());
 			}
 		}
@@ -193,7 +190,6 @@ class NotesSubstate extends MusicBeatSubstate
 		hsvText.color = FlxColor.WHITE;
 		add(hsvText);
 		changeSelection();
-		#if mobile addVirtualPad(LEFT_FULL, A_B_C); #end
 	}
 
 	var changingNote:Bool = false;
@@ -309,11 +305,11 @@ class NotesSubstate extends MusicBeatSubstate
 					spr.alpha = 0;
 				});
 				#if mobile
-            flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
-            FlxG.resetState();
-            #else
-            close();
-            #end
+                                flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+                                FlxG.resetState();
+                                #else
+                                close();
+                                #end
 			}
 			changingNote = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -480,8 +476,6 @@ class ControlsSubstate extends MusicBeatSubstate {
 			}
 		}
 		changeSelection();
-	
-	#if mobile addVirtualPad(LEFT_FULL, B); #end
 	}
 
 	var leaving:Bool = false;
@@ -505,11 +499,11 @@ class ControlsSubstate extends MusicBeatSubstate {
 					spr.alpha = 0;
 				});
 				#if mobile
-            flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
-            FlxG.resetState();
-            #else
-            close();
-            #end
+                                flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+                                FlxG.resetState();
+                                #else
+                                close();
+                                #end
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 			}
 
