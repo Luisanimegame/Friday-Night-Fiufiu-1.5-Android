@@ -130,6 +130,8 @@ class MainMenuState extends MusicBeatState
 		}
 		#end
 
+		#if mobile addVirtualPad(UP_DOWN, A); #end
+
 		super.create();
 	}
 
@@ -147,9 +149,7 @@ class MainMenuState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		if (FlxG.sound.music.volume < 0.8)
-		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
-		}
 
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 5.6, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
@@ -168,20 +168,6 @@ class MainMenuState extends MusicBeatState
 				changeItem(1);
 			}
 
-			for (i in 0...menuItems.length)
-		    if (Algo.justPressed(menuItems.members[i])) {
-		      if (curSelected != curSelected)
-		        FlxG.sound.play(Paths.sound('scrollMenu'));
-		      curSelected = i;
-		    }
-
-		  for (i in 0...menuItems.length)
-		    if (Algo.pressed(menuItems.members[i])) {
-		      if (curSelected != curSelected)
-		        FlxG.sound.play(Paths.sound('scrollMenu'));
-		      curSelected = i;
-		    }
-
 			if (controls.BACK)
 			{
 				selectedSomethin = true;
@@ -189,7 +175,7 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new TitleState());
 			}
 
-			if (controls.ACCEPT || (curSelected == curSelected && Algo.justPressed(menuItems.members[curSelected])))
+			if (controls.ACCEPT)
 			{
 				if (optionShit[curSelected] == 'discord')
 					CoolUtil.browserLoad('https://discord.gg/uVdSYYgXYM');

@@ -37,7 +37,7 @@ class PauseSubState extends MusicBeatSubstate
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
-		FlxG.sound.list.add(pauseMusic);
+		//FlxG.sound.list.add(pauseMusic);
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0;
@@ -109,8 +109,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
-		#if mobile addVirtualPad(UP_DOWN, A);
-        addVirtualPadCamera(); #end
+		//#if mobile addVirtualPad(UP_DOWN, A); addVirtualPadCamera(); #end
 	}
 
 	override function update(elapsed:Float)
@@ -129,7 +128,14 @@ class PauseSubState extends MusicBeatSubstate
 		if (downP)
 			changeSelection(1);
 
-		if (accepted)
+		for (i in 0...grpMenuShit.length) {
+		  if (Algo.justPressed(grpMenuShit.members[i]))
+		  if (curSelected != i)
+		    FlxG.sound.play(Paths.sound('scrollMenu'))
+		    curSelected = i;
+		}
+
+		if (accepted || (curSelected == curSelected && Algo.justPressed(grpMenuShit.members[i])))
 		{
 			var daSelected:String = menuItems[curSelected];
 
