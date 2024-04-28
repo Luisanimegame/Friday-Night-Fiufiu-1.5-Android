@@ -100,15 +100,15 @@ class OptionsState extends MusicBeatState
 
 			switch(options[curSelected]) {
 				case 'Notas':
-				  removeVirtualPad();
+				  #if mobile removeVirtualPad(); #end
 					openSubState(new NotesSubstate());
 
 				case 'Controles':
-				  removeVirtualPad();
+				  #if mobile removeVirtualPad(); #end
 					openSubState(new ControlsSubstate());
 
 				case 'Preferencias':
-				  removeVirtualPad();
+				  #if mobile removeVirtualPad(); #end
 					openSubState(new PreferencesSubstate());
 			}
 		}
