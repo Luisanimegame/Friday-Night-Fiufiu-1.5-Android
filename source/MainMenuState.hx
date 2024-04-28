@@ -130,7 +130,6 @@ class MainMenuState extends MusicBeatState
 		}
 		#end
 
-        #if mobile addVirtualPad(UP_DOWN, A_B); #end
 		super.create();
 	}
 
@@ -169,6 +168,20 @@ class MainMenuState extends MusicBeatState
 				changeItem(1);
 			}
 
+			for (i in 0...menuItems.length)
+		    if (Algo.justPressed(menuItems.members[i])) {
+		      if (curSelected != curSelected)
+		        FlxG.sound.play(Paths.sound('scrollMenu'));
+		      curSelected = i;
+		    }
+
+		  for (i in 0...menuItems.length)
+		    if (Algo.pressed(menuItems.members[i])) {
+		      if (curSelected != curSelected)
+		        FlxG.sound.play(Paths.sound('scrollMenu'));
+		      curSelected = i;
+		    }
+
 			if (controls.BACK)
 			{
 				selectedSomethin = true;
@@ -176,12 +189,10 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new TitleState());
 			}
 
-			if (controls.ACCEPT)
+			if (controls.ACCEPT || (curSelected == curSelected && Algo.justPressed(menuItems.members[curSelected])))
 			{
 				if (optionShit[curSelected] == 'discord')
-				{
 					CoolUtil.browserLoad('https://discord.gg/uVdSYYgXYM');
-				}
 				else
 				{
 					selectedSomethin = true;

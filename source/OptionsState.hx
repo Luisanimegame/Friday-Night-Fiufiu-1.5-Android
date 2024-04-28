@@ -100,12 +100,15 @@ class OptionsState extends MusicBeatState
 
 			switch(options[curSelected]) {
 				case 'Notas':
+				  removeVirtualPad();
 					openSubState(new NotesSubstate());
 
 				case 'Controles':
+				  removeVirtualPad();
 					openSubState(new ControlsSubstate());
 
 				case 'Preferencias':
+				  removeVirtualPad();
 					openSubState(new PreferencesSubstate());
 			}
 		}
@@ -190,6 +193,8 @@ class NotesSubstate extends MusicBeatSubstate
 		hsvText.color = FlxColor.WHITE;
 		add(hsvText);
 		changeSelection();
+
+		#if mobile addVirtualPad(LEFT_FULL, A_B_C); #end
 	}
 
 	var changingNote:Bool = false;
@@ -405,8 +410,6 @@ class NotesSubstate extends MusicBeatSubstate
 	}
 }
 
-
-
 class ControlsSubstate extends MusicBeatSubstate {
 	private static var curSelected:Int = -1;
 	private static var curAlt:Bool = false;
@@ -476,6 +479,8 @@ class ControlsSubstate extends MusicBeatSubstate {
 			}
 		}
 		changeSelection();
+
+		#if mobile addVirtualPad(LEFT_FULL, A_B_C); #end
 	}
 
 	var leaving:Bool = false;
@@ -718,8 +723,6 @@ class ControlsSubstate extends MusicBeatSubstate {
 	}
 }
 
-
-
 class PreferencesSubstate extends MusicBeatSubstate
 {
 	private static var curSelected:Int = 0;
@@ -749,10 +752,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Esconder Interface',
 		'Esconder Duracao da Musica',
 		'Luzes Piscantes',
-		'Zoom da Camera'
-		#if !mobile
-		,'Contador de FPS'
-		#end
+		'Zoom da Camera',
+		'Contador de FPS'
 	];
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
@@ -835,6 +836,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 		}
 		changeSelection();
 		reloadValues();
+
+		#if mobile addVirtualPad(LEFT_FULL, A_B_C); #end
 	}
 
 	var nextAccept:Int = 5;

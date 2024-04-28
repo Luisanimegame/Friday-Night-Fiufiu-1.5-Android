@@ -50,7 +50,7 @@
 	<define name="LUA_ALLOWED" if="windows || android" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="MISC_ALLOWED" />
-	<define name="VIDEOS_ALLOWED" if="web || windows" unless="32bits"/>
+	<define name="VIDEOS_ALLOWED" if="web || windows || mobile" unless="32bits"/>
 
 	<!-- DONT ENABLE THIS -->
 	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>
@@ -73,7 +73,7 @@
 	<assets path="arwen_soundfont/"	    rename=''		    if="MISC_ALLOWED" />
 	<assets path="plugins/"             rename=''               if="VIDEOS_ALLOWED windows" />
 	<assets path="dlls/"                rename=''               if="VIDEOS_ALLOWED windows" />
-	<assets path="assets/videos"        library="videos"        if="VIDEOS_ALLOWED"/>
+	<assets path="assets/videos"        if="VIDEOS_ALLOWED"/>
 	<assets path="assets/songs"         library="songs"         exclude="*.ogg" if="web"/>
 	<assets path="assets/songs"         library="songs"         exclude="*.mp3" unless="web"/>
 	<assets path="assets/shared"        library="shared"        exclude="*.ogg" if="web"/>
@@ -106,6 +106,7 @@
 	<haxelib name="faxe" if='switch'/>
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
+	<haxelib name="hxCodec" if="VIDEOS_ALLOWED" />
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
 	<!-- <haxelib name="markdown" /> -->

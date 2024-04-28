@@ -69,12 +69,12 @@ class CreditsState extends MusicBeatState
 			'FakerWuzX',
 			'fakerzinho',
 			'Android Port k',
-			'https://youtube.com/@FakerwuzX?si=CdTCFrSX0l1CxGEk',
+			'https://youtube.com/@GabewuzX?si=mmWNPW8yMo56zot4',
 			'0xFF38e06b'
 		],
 		[
 			'idklool',
-			'idk',
+			'noiconcuzidfk',
 			'nao sei\neu ajudei :thumbsup:',
 			'https://youtube.com/@idklool122',
 			'0xFF38e06b'

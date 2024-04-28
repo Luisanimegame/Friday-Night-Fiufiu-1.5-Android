@@ -108,6 +108,7 @@ class PauseSubState extends MusicBeatSubstate
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
 		#if mobile addVirtualPad(UP_DOWN, A);
         addVirtualPadCamera(); #end
 	}
@@ -124,13 +125,9 @@ class PauseSubState extends MusicBeatSubstate
 		var accepted = controls.ACCEPT;
 
 		if (upP)
-		{
 			changeSelection(-1);
-		}
 		if (downP)
-		{
 			changeSelection(1);
-		}
 
 		if (accepted)
 		{
@@ -156,11 +153,10 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
 					CustomFadeTransition.nextCamera = transCamera;
-					if(PlayState.isStoryMode) {
+					if(PlayState.isStoryMode)
 						MusicBeatState.switchState(new StoryMenuState());
-					} else {
+					else
 						MusicBeatState.switchState(new FreeplayState());
-					}
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					PlayState.usedPractice = false;
 					PlayState.changedDifficulty = false;

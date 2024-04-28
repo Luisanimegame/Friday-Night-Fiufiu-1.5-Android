@@ -1229,47 +1229,40 @@ class PlayState extends MusicBeatState
 		var foundFile:Bool = false;
 		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
 		#if sys
-		if(FileSystem.exists(fileName)) {
+		if(FileSystem.exists(fileName))
 			foundFile = true;
-		}
 		#end
 
 		if(!foundFile) {
 			fileName = Paths.video(name);
 			#if sys
-			if(FileSystem.exists(fileName)) {
+			if(FileSystem.exists(fileName))
 			#else
-			if(OpenFlAssets.exists(fileName)) {
+			if(OpenFlAssets.exists(fileName))
 			#end
 				foundFile = true;
-			}
 		}
 
 		if(foundFile) {
 			inCutscene = true;
-			var bg = new FlxSprite(-FlxG.width, -FlxG.height).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-			bg.scrollFactor.set();
-			bg.cameras = [camHUD];
-			add(bg);
 
-			(new FlxVideo(fileName)).finishCallback = function() {
-				remove(bg);
-				if(endingSong) {
+			var video:VideoHandler = new VideoHandler();
+			video.finishCallback = function()
+			{
+			  if(endingSong)
 					endSong();
-				} else {
+				else
 					startCountdown();
-				}
 			}
+			video.playVideo(fileName);
 			return;
-		} else {
+		} else
 			FlxG.log.warn('Couldnt find video file: ' + fileName);
-		}
 		#end
-		if(endingSong) {
+		if(endingSong)
 			endSong();
-		} else {
+		else
 			startCountdown();
-		}
 	}
 
 	var dialogueCount:Int = 0;
@@ -2091,7 +2084,7 @@ class PlayState extends MusicBeatState
 		}
 		botplayTxt.visible = cpuControlled;
 
-		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
+		if (FlxG.keys.justPressed.ENTER || Algo.JRBACK() && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', []);
 			if(ret != FunkinLua.Function_Stop) {
