@@ -131,7 +131,7 @@ class PauseSubState extends MusicBeatSubstate
 		for (i in 0...grpMenuShit.length) {
 		  if (Algo.justPressed(grpMenuShit.members[i]))
 		  if (curSelected != i)
-		    FlxG.sound.play(Paths.sound('scrollMenu'))
+		    FlxG.sound.play(Paths.sound('scrollMenu'));
 		    curSelected = i;
 		}
 
