@@ -109,7 +109,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
-		//#if mobile addVirtualPad(UP_DOWN, A); addVirtualPadCamera(); #end
+		#if mobile addVirtualPad(UP_DOWN, A); addVirtualPadCamera(); #end
 	}
 
 	override function update(elapsed:Float)
@@ -128,27 +128,19 @@ class PauseSubState extends MusicBeatSubstate
 		if (downP)
 			changeSelection(1);
 
-		for (i in 0...grpMenuShit.length) {
-		  if (Algo.justPressed(grpMenuShit.members[i])) {
-		  if (curSelected != i)
-		    FlxG.sound.play(Paths.sound('scrollMenu'));
-		    curSelected = i;
-		  }
-		}
-
-		if (accepted || (curSelected == curSelected && Algo.justPressed(grpMenuShit.members[curSelected])))
+		if (accepted)
 		{
 			var daSelected:String = menuItems[curSelected];
 
 			switch (daSelected)
 			{
-				case "Resume":
+				case "Continuar":
 					close();
-				case 'Toggle Practice Mode':
+				case 'Modo de Pratica':
 					PlayState.practiceMode = !PlayState.practiceMode;
 					PlayState.usedPractice = true;
 					practiceText.visible = PlayState.practiceMode;
-				case "Restart Song":
+				case "Reiniciar":
 					CustomFadeTransition.nextCamera = transCamera;
 					MusicBeatState.resetState();
 					FlxG.sound.music.volume = 0;
@@ -156,7 +148,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.cpuControlled = !PlayState.cpuControlled;
 					PlayState.usedPractice = true;
 					botplayText.visible = PlayState.cpuControlled;
-				case "Exit to menu":
+				case "Sair para o Menu":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
 					CustomFadeTransition.nextCamera = transCamera;
