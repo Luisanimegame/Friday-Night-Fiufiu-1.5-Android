@@ -136,7 +136,7 @@ class PauseSubState extends MusicBeatSubstate
 		  }
 		}
 
-		if (accepted || (curSelected == curSelected && Algo.justPressed(grpMenuShit.members[i])))
+		if (accepted || (curSelected == curSelected && Algo.justPressed(grpMenuShit.members[curSelected])))
 		{
 			var daSelected:String = menuItems[curSelected];
 
